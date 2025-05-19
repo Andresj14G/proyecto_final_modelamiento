@@ -46,6 +46,7 @@ end
 
     % Consumos ajustados
     consumos_final = consumos_base .* ajuste_terreno .* ajuste_peso .* ajuste_motor .* ajuste_anio;
+
     % Interpolación para el consumo estimado
     consumo = IntLineal(velocidad, velocidades, consumos_final);
 
@@ -57,13 +58,11 @@ end
         otherwise, factor_emision = 2.31;
     end
     emisiones = (consumo / 100) * distancia * factor_emision;
-
-
     % Calcular el gasto estimado
-   gasto = calcular_gasto_con_regresion(consumo, distancia);
+   gasto = calcular_gasto_con_regresion(consumo, distancia, tipo_motor);
    gasto_mensual = gasto * viajes_mes;
+
 end
-  
 
 % Función de interpolación lineal
 function y = IntLineal(x, X, Y)
@@ -104,13 +103,29 @@ function [m, b] = mincuadlin(X, Y)
     b = sol(2, 1);
 end
 
-% Cálculo del gasto estimado con regresión lineal
-function gasto_estimado = calcular_gasto_con_regresion(consumo, distancia)
-    % Precio de la gasolina en COP por galón
-    precio_galon = 15831;
-    precio_litro = precio_galon / 3.78541;
 
-    % Calcular el gasto directamente
+% Cálculo del gasto estimado con regresión lineal y tipo de motor
+function gasto_estimado = calcular_gasto_con_regresion(consumo, distancia, tipo_motor)
+    tipo_motor = lower(strtrim(tipo_motor));
+
+    % Precios por galón en COP
+    precio_galon_gasolina = 15831;
+    precio_galon_diesel = 10527;
+
+    % Precios por litro
+    precio_litro_gasolina = precio_galon_gasolina / 3.78541;
+    precio_litro_diesel = precio_galon_diesel / 3.78541;
+
+    % Selección del precio correcto según tipo de motor
+    switch tipo_motor
+        case 'gasolina'
+            precio_litro = precio_litro_gasolina;
+        case 'diesel'
+            precio_litro = precio_litro_diesel;
+        otherwise
+            precio_litro = precio_litro_gasolina; % por defecto
+    end
+    % Cálculo del gasto estimado
     gasto_estimado = (consumo / 100) * distancia * precio_litro;
 end
 
