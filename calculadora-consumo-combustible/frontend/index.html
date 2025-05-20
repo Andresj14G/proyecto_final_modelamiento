@@ -1,83 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>EcoDrive: Calculadora de Consumo</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
   <script>
     window.env = window.env || {};
     window.env.API_URL = "https://proyecto-modelamiento.onrender.com";
   </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 <body>
   <div class="container">
     <h1>EcoDrive: Calculadora de Consumo Óptimo de Combustible</h1>
 
-    <div class="tabs">
-     <button class="tab active">Calculadora</button>
+    <div class="main-content">
+      <div class="left-panel">
+        <img src="carro web.png" alt="Carro EcoDrive" class="car-image" />
+
+        <div class="tips-container">
+          <div class="info-box tip-ahorro">
+            <h3>💡Tips de ahorro</h3>
+            <p>Mantén tu velocidad constante entre 70-90 km/h para un consumo óptimo.</p>
+          </div>
+
+          <div class="info-box impacto-ambiental">
+            <h3>🌎Impacto ambiental</h3>
+            <p>Reducir tu consumo en 11/180 ahorra hasta 2.3kg de CO<sub>2</sub> por viaje.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="calculator">
+        <div class="calculator-title">Calculadora de Consumo de Combustible</div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modelo">Modelo del Carro</label>
+              <input list="modelos" id="modelo" placeholder="Ej: Toyota Corolla" required />
+              <datalist id="modelos">
+                <option value="Toyota Corolla"></option>
+                <option value="Mazda 3"></option>
+                <option value="Chevrolet Spark"></option>
+                <option value="Ford Fiesta"></option>
+                <option value="Hyundai Elantra"></option>
+                <option value="Kia Rio"></option>
+                <option value="Nissan Sentra"></option>
+                <option value="Volkswagen Jetta"></option>
+                <option value="Renault Logan"></option>
+                <option value="Honda Civic"></option>
+              </datalist>
+            </div>
+            <div class="form-group">
+              <label for="anio">Año del Carro</label>
+              <input type="number" id="anio" placeholder="Ej: 2015" min="1980" max="2025" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tipo_motor">Tipo de motor</label>
+              <select id="tipo_motor" required>
+                <option value="gasolina">Gasolina</option>
+                <option value="diesel">Diesel</option>
+                <option value="hibrido">Híbrido</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="velocidad">Velocidad (km/h)</label>
+              <input type="number" id="velocidad" value="0" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="peso">Peso (kg)</label>
+              <input type="number" id="peso" value="0" />
+            </div>
+            <div class="form-group">
+              <label for="terreno">Terreno</label>
+              <select id="terreno">
+                <option>Plano</option>
+                <option>Subida</option>
+                <option>Bajada</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="distancia">Distancia (Km)</label>
+              <input type="number" id="distancia" value="20" />
+            </div>
+            <div class="form-group">
+              <label for="viajes_mes">¿Cuántos viajes hiciste este mes?</label>
+              <input
+                type="number"
+                id="viajes_mes"
+                placeholder="Ej: 20"
+                min="1"
+                value="20"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <button id="calcular">Calcular</button>
+        <div id="resultado"></div>
+      </div>
     </div>
-
-    
-    
-    <div class="calculator">
-      <strong>Calculadora de Consumo de Combustible</strong>
-      <p>Ingrese los detalles del vehículo para calcular el consumo de combustible:</p>
-
-      <label for="modelo">Modelo del Carro</label>
-      <input list="modelos" id="modelo" placeholder="Ej: Toyota Corolla" required>
-      <datalist id="modelos">
-        <option value="Toyota Corolla">
-        <option value="Mazda 3">
-        <option value="Chevrolet Spark">
-        <option value="Ford Fiesta">
-        <option value="Hyundai Elantra">
-        <option value="Kia Rio">
-        <option value="Nissan Sentra">
-        <option value="Volkswagen Jetta">
-        <option value="Renault Logan">
-        <option value="Honda Civic">
-      </datalist>
-
-      <label for="anio">Año del Carro</label>
-<input type="number" id="anio" placeholder="Ej: 2015" min="1980" max="2025" required>
-
-      <label for="tipo_motor">Tipo de motor</label>
-<select id="tipo_motor" required>
-  <option value="gasolina">Gasolina</option>
-  <option value="diesel">Diesel</option>
-  <option value="hibrido">Híbrido</option>
-</select>
-<br><br>
-
-      <label for="velocidad">Velocidad (km/h)</label>
-      <input type="number" id="velocidad" value="0">
-
-      <label for="peso">Peso (kg)</label>
-      <input type="number" id="peso" value="0">
-
-      <label for="terreno">Terreno</label>
-      <select id="terreno">
-        <option>Plano</option>
-        <option>Subida</option>
-        <option>Bajada</option>
-      </select>
-
-      <label for="distancia">Distancia (Km)</label>
-      <input type="number" id="distancia" value="20">
-      
-      <label for="viajes_mes">¿Cuántos viajes hiciste este mes?</label>
-<input type="number" id="viajes_mes" placeholder="Ej: 20" min="1" value="20" required>
-
-      <button id="calcular">Calcular</button>
-      <div id="resultado" style="margin-top: 15px;"></div>
-    </div>
-  </div> 
-
-<a href="grafica.html" target="_blank">
-</a>
-
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
