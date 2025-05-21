@@ -1,11 +1,11 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0faf2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+background-image: url("fondo_f.jpg");
+  background-size: cover;
+  background-position: center top; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0;
+  min-height: 100vh;
 }
 
 .container {
@@ -14,10 +14,28 @@ body {
   padding: 20px;
 }
 
-h1 {
-  color: #2b4d3f;
+.titulo-principal {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  font-size: 40px;
+  color: rgb(245, 241, 225);
   margin-bottom: 30px;
+  font-weight: bold;
+  text-align: left;
+  line-height: 1.2;
 }
+
+
+.icono-hoja {
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+}
+
+
+
 
 .main-content {
   display: flex;
@@ -35,7 +53,7 @@ h1 {
   gap: 15px;
   position: relative;
   right: 190px;
-  margin-top: 90px;
+  margin-top: 40px;
 }
 
 .car-image {
@@ -51,12 +69,12 @@ h1 {
 }
 
 .info-box {
-  flex: 1;
-  padding: 10px 15px;
+  width: 280px;
+  padding: 25px;
   border-radius: 8px;
   color: #2b4d3f;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  background-color: white;
+  background-color: rgb(245, 241, 225);
   border: 1px solid #d6efd5;
   min-width: 140px;
 }
@@ -64,14 +82,15 @@ h1 {
 .info-box h3 {
   margin-top: 0;
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
   white-space: nowrap;
 }
 
 .info-box p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
+  color: #2b4d3f;
 }
 
 .tip-ahorro {
@@ -83,7 +102,7 @@ h1 {
 }
 
 .calculator {
-  background-color: #ffffff;
+  background-color: rgb(245, 241, 225);
   border-radius: 8px;
   padding: 20px;
   width: 360px;
@@ -92,10 +111,20 @@ h1 {
 }
 
 .calculator-title {
-  font-size: 24px;
+    font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.icono-titulo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .form-grid {
@@ -173,3 +202,41 @@ h1 {
   color: #555;
   margin-top: 5px;
 }
+
+
+.titulo {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.icono-circular {
+  display: block;
+  font-size: 35px; 
+  text-align: center;
+  margin-bottom: 8px;
+ 
+}
+
+.titulo-con-icono {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #2b4d3f;
+  margin: 0 0 8px;
+}
+
+.icono-img {
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+
+}
+
+
+
+
+
