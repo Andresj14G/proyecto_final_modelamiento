@@ -39,7 +39,7 @@ def calcular():
 
     # Llamada a Octave
     consumo_estimado, gasto_estimado, emisiones_estimadas, gasto_mensual_estimado = oc.calculo_consumo_y_gasto(
-        velocidad, peso, terreno_num, distancia, tipo_motor, anio, viajes_mes, modelo,  nout=4
+        velocidad, peso, terreno_num, distancia, tipo_motor, anio, viajes_mes, nout=4
     )
 
     return jsonify({
